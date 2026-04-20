@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUYA HOSST - Toko Multi Shop</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #e7f3ff 0%, #f8fbff 100%);
+            color: #0f2f5b;
+        }
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 32px 20px 40px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .brand-logo {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: #ffffff;
+            border: 1px solid rgba(32, 97, 255, 0.14);
+            font-weight: 700;
+            color: #2061ff;
+        }
+        .brand-text h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .brand-text p {
+            margin: 4px 0 0;
+            color: #4b6f94;
+        }
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .shop-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 26px;
+            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid rgba(15, 47, 91, 0.12);
+            box-shadow: 0 20px 40px rgba(15, 47, 91, 0.06);
+            text-decoration: none;
+            color: inherit;
+        }
+        .shop-card h2 {
+            margin: 0 0 10px;
+            font-size: 1.35rem;
+            color: #0f2f5b;
+        }
+        .shop-card p {
+            margin: 0 0 18px;
+            color: #4b6f94;
+            line-height: 1.7;
+        }
+        .shop-card .price {
+            font-size: 1.7rem;
+            color: #2061ff;
+            margin: 0 0 18px;
+        }
+        .shop-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 22px;
+            display: grid;
+            gap: 10px;
+        }
+        .shop-card li {
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: #f2f8ff;
+            border: 1px solid rgba(32, 97, 255, 0.1);
+        }
+        .shop-card li strong {
+            color: #0f2f5b;
+        }
+        .shop-card .button {
+            display: inline-flex;
+            padding: 14px 20px;
+            border-radius: 14px;
+            background: #2061ff;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-logo">SH</div>
+                <div class="brand-text">
+                    <h1>SUYA HOSST</h1>
+                    <p>Toko multi shop: VPS, domain, dan bot dalam satu tempat.</p>
+                </div>
+            </div>
+            <a class="button" href="../index.html">Kembali ke Dashboard</a>
+        </header>
+
+        <div class="shop-grid">
+            <a class="shop-card" href="vps.html">
+                <div>
+                    <h2>Paket VPS</h2>
+                    <p>VPS cepat dengan kontrol penuh untuk aplikasi dan situs profesional.</p>
+                    <p class="price">Rp 79.000 / bulan</p>
+                </div>
+                <ul>
+                    <li><strong>RAM</strong> 1 GB</li>
+                    <li><strong>CPU</strong> 1 Core vCPU</li>
+                    <li><strong>Storage</strong> 20 GB SSD NVMe</li>
+                </ul>
+                <span class="button">Pilih VPS</span>
+            </a>
+            <a class="shop-card" href="domain.html">
+                <div>
+                    <h2>Paket Domain</h2>
+                    <p>Nama domain profesional untuk brand Anda, mudah didaftarkan.</p>
+                    <p class="price">Mulai Rp 12.500 / tahun</p>
+                </div>
+                <ul>
+                    <li><strong>TLD</strong> .my.id, .biz.id</li>
+                    <li><strong>DNS</strong> Gratis</li>
+                    <li><strong>Support</strong> Transfer mudah</li>
+                </ul>
+                <span class="button">Pilih Domain</span>
+            </a>
+            <a class="shop-card" href="bot.html">
+                <div>
+                    <h2>Paket Bot</h2>
+                    <p>Bot otomatis untuk bisnis, marketing, dan interaksi pelanggan siap pakai.</p>
+                    <p class="price">Rp 149.000 / bulan</p>
+                </div>
+                <ul>
+                    <li><strong>Platform</strong> Telegram / WhatsApp</li>
+                    <li><strong>Fitur</strong> Auto-reply, broadcast</li>
+                    <li><strong>Setup</strong> Mudah &amp; cepat</li>
+                </ul>
+                <span class="button">Pilih Bot</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

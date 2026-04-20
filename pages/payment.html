@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - SUYA HOSST</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, sans-serif;
+            background: linear-gradient(180deg, #e7f3ff 0%, #f8fbff 100%);
+            color: #0f2f5b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .checkout-card {
+            background: #ffffff;
+            border: 1px solid rgba(15, 47, 91, 0.12);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 24px 50px rgba(15, 47, 91, 0.08);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        .product-name { font-size: 1.5rem; margin-bottom: 8px; }
+        .price-tag { font-size: 2rem; color: #2061ff; font-weight: 800; margin-bottom: 24px; }
+        .qris-container {
+            background: #f2f8ff;
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            display: none; /* Muncul setelah klik bayar */
+        }
+        .btn-pay {
+            background: #2061ff;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .btn-pay:disabled { background: #ccc; }
+        img#qr-code { width: 100%; max-width: 250px; margin-top: 15px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="checkout-card">
+    <h2 class="product-name" id="product">Memuat...</h2>
+    <div class="price-tag" id="price">Rp 0</div>
+
+    <button id="pay-button" class="btn-pay" onclick="prosesBayar()">Generate QRIS</button>
+
+    <div id="qris-area" class="qris-container">
+        <p style="margin:0; font-weight:600;">Scan untuk Membayar</p>
+        <img id="qr-code" src="" alt="QRIS">
+        <p id="status" style="font-size: 0.9rem; color: #4b6f94; margin-top: 10px;"></p>
+    </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const product = params.get('product');
+const price = params.get('price');
+
+document.getElementById("product").innerText = product || "Produk Tidak Dikenal";
+document.getElementById("price").innerText = price || "Rp 0";
+
+async function prosesBayar() {
+    const btn = document.getElementById("pay-button");
+    btn.innerText = "Processing...";
+    btn.disabled = true;
+
+    try {
+        const res = await fetch('http://localhost:3000/pay', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ product, price })
+        });
+
+        const data = await res.json();
+
+        if(data.qr_url) {
+            document.getElementById("qris-area").style.display = "block";
+            document.getElementById("qr-code").src = data.qr_url;
+            document.getElementById("status").innerText = "Status: " + data.status;
+            btn.style.display = "none";
+        } else {
+            alert("Gagal memuat QRIS: " + (data.error || "Cek console"));
+            btn.disabled = false;
+            btn.innerText = "Coba Lagi";
+        }
+    } catch (e) {
+        alert("Error: " + e.message);
+        btn.disabled = false;
+    }
+}
+</script>
+</body>
+</html>

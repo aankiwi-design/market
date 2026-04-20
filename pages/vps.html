@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUYA HOSST - Paket VPS</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #e7f3ff 0%, #f8fbff 100%);
+            color: #0f2f5b;
+        }
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 32px 20px 40px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .header p {
+            margin: 6px 0 0;
+            color: #4b6f94;
+            max-width: 620px;
+            line-height: 1.7;
+        }
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .package-card {
+            background: #ffffff;
+            border: 1px solid rgba(15, 47, 91, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(15, 47, 91, 0.08);
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .package-card.highlight {
+            border-color: #2061ff;
+            box-shadow: 0 20px 50px rgba(32, 97, 255, 0.15);
+        }
+        .package-card h2 {
+            margin: 0 0 10px;
+            font-size: 1.35rem;
+        }
+        .package-price {
+            margin: 0 0 18px;
+            font-size: 2rem;
+            color: #2061ff;
+        }
+        .package-subtitle {
+            margin: 0 0 18px;
+            color: #4b6f94;
+            line-height: 1.6;
+        }
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+            display: grid;
+            gap: 10px;
+        }
+        .spec-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            border-radius: 14px;
+            background: #f2f8ff;
+            padding: 14px 16px;
+            border: 1px solid rgba(32, 97, 255, 0.1);
+            color: #2c4f7c;
+        }
+        .spec-list li strong {
+            color: #0f2f5b;
+        }
+        .package-note {
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: #eff6ff;
+            color: #2050bf;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 14px;
+            background: #2061ff;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px rgba(32, 97, 255, 0.16);
+        }
+        .nav-links {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .nav-links a {
+            color: #2050bf;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        @media (max-width: 720px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Paket VPS SUYA HOSST</h1>
+                <p>Pilih paket VPS sesuai kebutuhan: mulai dari project ringan, bot, hingga aplikasi berat dengan kontrol penuh dan performa stabil.</p>
+            </div>
+            <a class="button" href="/dashboard">Kembali ke Dashboard</a>
+        </div>
+
+        <div class="packages">
+            <div class="package-card">
+                <div>
+                    <h2>VPS Starter</h2>
+                    <p class="package-price">Rp 79.000 / bulan</p>
+                    <p class="package-subtitle">Cocok untuk website kecil, bot ringan, atau development project.</p>
+                    <ul class="spec-list">
+                        <li><strong>RAM</strong><span>1 GB</span></li>
+                        <li><strong>CPU</strong><span>1 Core vCPU</span></li>
+                        <li><strong>Storage</strong><span>20 GB SSD NVMe</span></li>
+                        <li><strong>Bandwidth</strong><span>500 GB</span></li>
+                    </ul>
+                </div>
+                <a class="button" href="/payment?product=VPS Starter&price=79000">Pilih Starter</a> 
+            </div>
+
+            <div class="package-card highlight">
+                <div>
+                    <h2>VPS Pro</h2>
+                    <p class="package-price">Rp 199.000 / bulan</p>
+                    <p class="package-subtitle">Paket paling populer untuk bot otomatis, aplikasi web, dan layanan menengah.</p>
+                    <div class="package-note">Recommended</div>
+                    <ul class="spec-list">
+                        <li><strong>RAM</strong><span>2 GB</span></li>
+                        <li><strong>CPU</strong><span>2 Core vCPU</span></li>
+                        <li><strong>Storage</strong><span>50 GB SSD NVMe</span></li>
+                        <li><strong>Bandwidth</strong><span>1 Gbps Unmetered</span></li>
+                    </ul>
+                </div>
+                <a class="button" href="/payment?product=VPS Pro&price=199000">Pilih Pro</a> 
+            </div>
+
+            <div class="package-card">
+                <div>
+                    <h2>VPS Business</h2>
+                    <p class="package-price">Rp 329.000 / bulan</p>
+                    <p class="package-subtitle">Kuat untuk e-commerce, bot heavy, atau aplikasi produksi dengan trafik tinggi.</p>
+                    <ul class="spec-list">
+                        <li><strong>RAM</strong><span>4 GB</span></li>
+                        <li><strong>CPU</strong><span>4 Core vCPU</span></li>
+                        <li><strong>Storage</strong><span>100 GB SSD NVMe</span></li>
+                        <li><strong>Bandwidth</strong><span>1 Gbps Unmetered</span></li>
+                    </ul>
+                </div>
+                <a class="button" href="/payment?product=VPS Business&price=329000">Pilih Business</a> 
+            </div>
+
+            <div class="package-card">
+                <div>
+                    <h2>VPS Elite</h2>
+                    <p class="package-price">Rp 549.000 / bulan</p>
+                    <p class="package-subtitle">Solusi premium untuk aplikasi berat, game server, dan beban kerja besar.</p>
+                    <ul class="spec-list">
+                        <li><strong>RAM</strong><span>8 GB</span></li>
+                        <li><strong>CPU</strong><span>8 Core vCPU</span></li>
+                        <li><strong>Storage</strong><span>200 GB SSD NVMe</span></li>
+                        <li><strong>Bandwidth</strong><span>1 Gbps Unmetered</span></li>
+                    </ul>
+                </div>
+                <a class="button" href="/payment?product=VPS Elite&price=549000">Pilih Elite</a> 
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Kembali ke Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

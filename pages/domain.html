@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUYA HOSST - Pembelian Domain</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #0f2f5b;
+            background: #f4f8ff;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #e7f3ff 0%, #f8fbff 100%);
+        }
+        .container {
+            width: min(1080px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 28px 0 40px;
+        }
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .brand-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid rgba(32, 97, 255, 0.18);
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            color: #2061ff;
+        }
+        .brand-text h1 {
+            margin: 0;
+            font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+        }
+        .brand-text p {
+            margin: 6px 0 0;
+            color: #4b6f94;
+            max-width: 580px;
+            line-height: 1.7;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid rgba(15, 47, 91, 0.12);
+            border-radius: 28px;
+            box-shadow: 0 24px 50px rgba(15, 47, 91, 0.08);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .card h2 {
+            margin: 0 0 14px;
+            font-size: 1.5rem;
+            color: #0f2f5b;
+        }
+        .card p {
+            margin: 0 0 18px;
+            color: #4b6f94;
+            line-height: 1.75;
+        }
+        .search-card {
+            display: grid;
+            gap: 18px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(32, 97, 255, 0.2);
+            font-size: 1rem;
+            outline: none;
+            background: #f8fbff;
+            color: #0f2f5b;
+        }
+        .search-input:focus {
+            border-color: #2061ff;
+            box-shadow: 0 0 0 4px rgba(32, 97, 255, 0.1);
+        }
+        .search-help {
+            font-size: 0.95rem;
+            color: #63799d;
+        }
+        .result-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .result-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(32, 97, 255, 0.12);
+            background: #f6f9ff;
+        }
+        .result-item strong {
+            font-size: 1rem;
+            color: #0f2f5b;
+        }
+        .result-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .result-caption {
+            font-size: 0.95rem;
+            color: #63799d;
+        }
+        .price-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+        .sale-price {
+            color: #2061ff;
+            font-weight: 700;
+        }
+        .original-price {
+            color: #94a6c4;
+            text-decoration: line-through;
+            font-size: 0.95rem;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+        .category-card {
+            background: #ffffff;
+            border: 1px solid rgba(15, 47, 91, 0.12);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 18px 36px rgba(15, 47, 91, 0.05);
+        }
+        .category-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.1rem;
+            color: #0f2f5b;
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        .price-table th,
+        .price-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(32, 97, 255, 0.08);
+            font-size: 0.96rem;
+        }
+        .price-table th {
+            color: #2050bf;
+            font-weight: 700;
+        }
+        .price-table td:last-child {
+            text-align: right;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(32, 97, 255, 0.1);
+            color: #2050bf;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            padding: 14px 22px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .primary {
+            background: #2061ff;
+            color: #ffffff;
+            border: 1px solid transparent;
+        }
+        .secondary {
+            background: #ffffff;
+            color: #2050bf;
+            border: 1px solid rgba(32, 97, 255, 0.18);
+        }
+        .cta-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px rgba(32, 97, 255, 0.14);
+        }
+        .note {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #63799d;
+            line-height: 1.7;
+        }
+        @media (max-width: 720px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-logo">SH</div>
+                <div class="brand-text">
+                    <h1>Pembelian Domain</h1>
+                    <p>Temukan nama domain terbaik untuk bot, server, atau brand Anda dengan harga promo dan kategori lengkap.</p>
+                </div>
+            </div>
+            <a class="cta-button secondary" href="/produk">Kembali ke Toko</a>
+        </header>
+
+        <div class="card search-card">
+            <h2>Cari Domain</h2>
+            <input id="domain-search" class="search-input" type="text" placeholder="masukkan nama domain, contoh: suya-host" autocomplete="off">
+            <p class="search-help">Hasil akan menunjukkan wildcard domain yang cocok dengan input Anda, seperti .my.id, .com, .online, dan lainnya.</p>
+            <div id="results" class="result-list"></div>
+        </div>
+
+        <div id="categoriesSection" class="card">
+            <h2>Kategori Domain</h2>
+            <p>Pilih dari segmen populer sesuai kebutuhan: internasional, lokal Indonesia, dan domain tech / bot / startup.</p>
+            <div class="category-grid">
+                <div class="category-card">
+                    <h3>Domain Populer & Internasional (gTLD)</h3>
+                    <table class="price-table">
+                        <tbody>
+                            <tr><th>.com</th><td><span class="sale-price">Rp 102.900</span> <span class="original-price">Rp 209.900</span></td></tr>
+                            <tr><th>.net</th><td><span class="sale-price">Rp 193.900</span> <span class="original-price">Rp 229.900</span></td></tr>
+                            <tr><th>.org</th><td><span class="sale-price">Rp 159.900</span> <span class="original-price">Rp 249.900</span></td></tr>
+                            <tr><th>.info</th><td><span class="sale-price">Rp 62.900</span> <span class="original-price">Rp 480.900</span></td></tr>
+                            <tr><th>.biz</th><td><span class="sale-price">Rp 62.900</span> <span class="original-price">Rp 289.900</span></td></tr>
+                            <tr><th>.co</th><td><span class="sale-price">Rp 52.900</span> <span class="original-price">Rp 429.900</span></td></tr>
+                            <tr><th>.me</th><td><span class="sale-price">Rp 140.000</span> <span class="original-price">Rp 360.000</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="category-card">
+                    <h3>Domain Lokal Indonesia (ccTLD)</h3>
+                    <table class="price-table">
+                        <tbody>
+                            <tr><th>.id</th><td><span class="sale-price">Rp 210.900</span> <span class="original-price">Rp 225.000</span></td></tr>
+                            <tr><th>.my.id</th><td><span class="sale-price">Rp 12.000</span> <span class="original-price">Rp 25.000</span></td></tr>
+                            <tr><th>.biz.id</th><td><span class="sale-price">Rp 12.000</span> <span class="original-price">Rp 25.000</span></td></tr>
+                            <tr><th>.web.id</th><td><span class="sale-price">Rp 45.000</span> <span class="original-price">Rp 55.000</span></td></tr>
+                            <tr><th>.co.id</th><td><span class="sale-price">Rp 275.000</span> <span class="original-price">Rp 280.000</span></td></tr>
+                            <tr><th>.or.id</th><td><span class="sale-price">Rp 45.000</span> <span class="original-price">Rp 55.000</span></td></tr>
+                            <tr><th>.sch.id</th><td><span class="sale-price">Rp 45.000</span> <span class="original-price">Rp 55.000</span></td></tr>
+                            <tr><th>.ac.id</th><td><span class="sale-price">Rp 45.000</span> <span class="original-price">Rp 55.000</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="category-card">
+                    <h3>Domain Tech, Bot, & Startup (nTLD)</h3>
+                    <table class="price-table">
+                        <tbody>
+                            <tr><th>.online</th><td><span class="sale-price">Rp 16.900</span> <span class="original-price">Rp 596.900</span></td></tr>
+                            <tr><th>.store</th><td><span class="sale-price">Rp 16.900</span> <span class="original-price">Rp 949.000</span></td></tr>
+                            <tr><th>.shop</th><td><span class="sale-price">Rp 16.900</span> <span class="original-price">Rp 579.900</span></td></tr>
+                            <tr><th>.xyz</th><td><span class="sale-price">Rp 32.900</span> <span class="original-price">Rp 314.900</span></td></tr>
+                            <tr><th>.cloud</th><td><span class="sale-price">Rp 32.900</span> <span class="original-price">Rp 529.000</span></td></tr>
+                            <tr><th>.tech</th><td><span class="sale-price">Rp 16.900</span> <span class="original-price">Rp 1.119.000</span></td></tr>
+                            <tr><th>.io</th><td><span class="sale-price">Rp 529.900</span> <span class="original-price">Rp 799.000</span></td></tr>
+                            <tr><th>.site</th><td><span class="sale-price">Rp 16.900</span> <span class="original-price">Rp 669.000</span></td></tr>
+                            <tr><th>.website</th><td><span class="sale-price">Rp 14.000</span> <span class="original-price">Rp 640.000</span></td></tr>
+                            <tr><th>.icu</th><td><span class="sale-price">Rp 32.900</span> <span class="original-price">Rp 314.900</span></td></tr>
+                            <tr><th>.top</th><td><span class="sale-price">Rp 125.000</span> <span class="original-price">Rp 314.900</span></td></tr>
+                            <tr><th>.link</th><td><span class="sale-price">Rp 102.900</span> <span class="original-price">Rp 289.900</span></td></tr>
+                            <tr><th>.click</th><td><span class="sale-price">Rp 102.900</span> <span class="original-price">Rp 249.900</span></td></tr>
+                            <tr><th>.space</th><td><span class="sale-price">Rp 16.900</span> <span class="original-price">Rp 480.900</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Butuh Layanan Tambahan?</h2>
+            <p class="note">Jika kamu ingin migrasi domain, daftarkan domain baru, atau membutuhkan bantuan konfigurasi DNS, pilih salah satu opsi di bawah ini.</p>
+            <div class="cta-row">
+                <a class="cta-button primary" href="#">Migrasi Domain</a>
+                <a class="cta-button secondary" href="#">Daftarkan Domain</a>
+                <a class="cta-button secondary" href="/dashboard">Kembali Ke Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const domains = [
+            {ext: '.com', sale: 'Rp 102.900', original: 'Rp 209.900', category: 'gTLD'},
+            {ext: '.net', sale: 'Rp 193.900', original: 'Rp 229.900', category: 'gTLD'},
+            {ext: '.org', sale: 'Rp 159.900', original: 'Rp 249.900', category: 'gTLD'},
+            {ext: '.info', sale: 'Rp 62.900', original: 'Rp 480.900', category: 'gTLD'},
+            {ext: '.biz', sale: 'Rp 62.900', original: 'Rp 289.900', category: 'gTLD'},
+            {ext: '.co', sale: 'Rp 52.900', original: 'Rp 429.900', category: 'gTLD'},
+            {ext: '.me', sale: 'Rp 140.000', original: 'Rp 360.000', category: 'gTLD'},
+            {ext: '.id', sale: 'Rp 210.900', original: 'Rp 225.000', category: 'ccTLD'},
+            {ext: '.my.id', sale: 'Rp 12.000', original: 'Rp 25.000', category: 'ccTLD'},
+            {ext: '.biz.id', sale: 'Rp 12.000', original: 'Rp 25.000', category: 'ccTLD'},
+            {ext: '.web.id', sale: 'Rp 45.000', original: 'Rp 55.000', category: 'ccTLD'},
+            {ext: '.co.id', sale: 'Rp 275.000', original: 'Rp 280.000', category: 'ccTLD'},
+            {ext: '.or.id', sale: 'Rp 45.000', original: 'Rp 55.000', category: 'ccTLD'},
+            {ext: '.sch.id', sale: 'Rp 45.000', original: 'Rp 55.000', category: 'ccTLD'},
+            {ext: '.ac.id', sale: 'Rp 45.000', original: 'Rp 55.000', category: 'ccTLD'},
+            {ext: '.online', sale: 'Rp 16.900', original: 'Rp 596.900', category: 'nTLD'},
+            {ext: '.store', sale: 'Rp 16.900', original: 'Rp 949.000', category: 'nTLD'},
+            {ext: '.shop', sale: 'Rp 16.900', original: 'Rp 579.900', category: 'nTLD'},
+            {ext: '.xyz', sale: 'Rp 32.900', original: 'Rp 314.900', category: 'nTLD'},
+            {ext: '.cloud', sale: 'Rp 32.900', original: 'Rp 529.000', category: 'nTLD'},
+            {ext: '.tech', sale: 'Rp 16.900', original: 'Rp 1.119.000', category: 'nTLD'},
+            {ext: '.io', sale: 'Rp 529.900', original: 'Rp 799.000', category: 'nTLD'},
+            {ext: '.site', sale: 'Rp 16.900', original: 'Rp 669.000', category: 'nTLD'},
+            {ext: '.website', sale: 'Rp 14.000', original: 'Rp 640.000', category: 'nTLD'},
+            {ext: '.icu', sale: 'Rp 32.900', original: 'Rp 314.900', category: 'nTLD'},
+            {ext: '.top', sale: 'Rp 125.000', original: 'Rp 314.900', category: 'nTLD'},
+            {ext: '.link', sale: 'Rp 102.900', original: 'Rp 289.900', category: 'nTLD'},
+            {ext: '.click', sale: 'Rp 102.900', original: 'Rp 249.900', category: 'nTLD'},
+            {ext: '.space', sale: 'Rp 16.900', original: 'Rp 480.900', category: 'nTLD'}
+        ];
+
+        const input = document.getElementById('domain-search');
+        const results = document.getElementById('results');
+        const categoriesSection = document.getElementById('categoriesSection');
+
+        function getMatchingExt(value) {
+            const sortedExt = domains.map(d => d.ext).sort((a, b) => b.length - a.length);
+            return sortedExt.find(ext => value.endsWith(ext));
+        }
+
+        function createResultItem(label, item, note) {
+    const node = document.createElement('div');
+    node.className = 'result-item';
+    node.style.cursor = 'pointer';
+    node.onclick = () => {
+        const cleanPrice = item.sale.replace(/[^0-9]/g, '');
+        window.location.href = `/payment?product=Domain ${label}&price=${cleanPrice}`;
+    };
+    node.innerHTML = `
+        <div class="result-info">
+            <div class="result-label">${label}</div>
+            ${note ? `<div class="result-note">${note}</div>` : ''}
+        </div>
+        <div class="result-price">
+            <span class="sale-price">${item.sale}</span>
+            <span class="original-price">${item.original}</span>
+        </div>`;
+    return node;
+}
+
+
+        function renderResults(query) {
+            results.innerHTML = '';
+            const value = query.trim().toLowerCase();
+            categoriesSection.classList.toggle('hidden', value.length > 0);
+            if (!value) return;
+
+            const exactExt = getMatchingExt(value);
+            const exactItem = exactExt ? domains.find(d => d.ext === exactExt) : null;
+
+            if (exactItem) {
+                results.appendChild(createResultItem(`${value} (search)`, exactItem, 'Pencarian langsung'));
+                results.appendChild(createResultItem(value, exactItem));
+            }
+
+            const variants = domains
+                .filter(d => !exactExt || d.ext !== exactExt)
+                .slice(0, 13)
+                .map(d => ({
+                    label: `${value}${d.ext}`,
+                    item: d
+                }));
+
+            variants.forEach(entry => {
+                results.appendChild(createResultItem(entry.label, entry.item));
+            });
+        }
+
+        input.addEventListener('input', () => renderResults(input.value));
+        input.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                renderResults(input.value);
+            }
+        });
+    </script>
+</body>
+</html>
